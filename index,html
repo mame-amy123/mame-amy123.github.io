@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio – Développement d’applications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f5f7; --surface:#ffffff; --ink:#14213d; --muted:#4a5a73;
+  --line:#c9d3de; --accent:#0e6e6c; --accent-ink:#ffffff; --card:#fffdf4; --card-line:#b9c7d6; --hole:#f2f5f7;
+  --head:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;
+  --body:"Figtree","Segoe UI",Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1724; --surface:#17233a; --ink:#e8eef7; --muted:#9fb0c8;
+    --line:#2b3b57; --accent:#4fd1c5; --accent-ink:#0f1724; --card:#1b2942; --card-line:#3a4d70; --hole:#0f1724;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1724; --surface:#17233a; --ink:#e8eef7; --muted:#9fb0c8;
+  --line:#2b3b57; --accent:#4fd1c5; --accent-ink:#0f1724; --card:#1b2942; --card-line:#3a4d70; --hole:#0f1724;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0}
+h2{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:1.25rem}
+p{margin:0 0 1rem;max-width:62ch}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+
+header.top{padding:1.1rem 0}
+header.top .wrap{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between;align-items:center}
+.brand{font:800 1.1rem var(--head);text-decoration:none;color:var(--ink)}
+nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:.25rem 0}
+nav a:hover{color:var(--accent)}
+
+.hero{padding:4rem 0 4.5rem;border-top:0}
+.hero h1{font-size:clamp(2.8rem,11vw,6.5rem);font-weight:800;letter-spacing:-.035em}
+.hero .role{font:600 clamp(1.15rem,3vw,1.5rem)/1.35 var(--head);color:var(--muted);margin:1.1rem 0 1.25rem}
+.hero p.lead{font-size:1.15rem;color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.btn{display:inline-block;padding:.7rem 1.25rem;border-radius:.5rem;font-weight:600;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent)}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.5rem 2rem}
+.skills h3{font-size:1.05rem;margin-bottom:.5rem}
+.skills ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.4rem}
+.skills li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.2rem .8rem;font-size:.95rem}
+
+/* Fiche de catalogue : la seule mise en scène de la page */
+.fiche{position:relative;background:var(--card);border:1px solid var(--card-line);border-radius:.4rem;padding:2.6rem 1.25rem 1.25rem;transform:rotate(-.4deg);margin:1rem 0 2rem;max-width:48rem}
+.fiche::before{content:"";position:absolute;top:.8rem;left:50%;width:1.1rem;height:1.1rem;margin-left:-.55rem;border-radius:50%;background:var(--hole);border:1px solid var(--card-line)}
+.fiche h3{font-size:1.5rem;margin-bottom:1rem}
+.fiche dl{margin:0}
+.fiche .row{display:grid;grid-template-columns:8.5rem 1fr;gap:.25rem 1rem;padding:.55rem 0;border-bottom:1px solid var(--card-line)}
+.fiche dt{font-weight:600;color:var(--muted)}
+.fiche dd{margin:0}
+.fiche .row:last-child{border-bottom:0}
+@media (max-width:34rem){.fiche .row{grid-template-columns:1fr;gap:0}}
+
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem}
+.shot{aspect-ratio:16/10;border:2px dashed var(--line);border-radius:.4rem;display:flex;align-items:center;justify-content:center;text-align:center;padding:.75rem;color:var(--muted);font-size:.95rem}
+
+.contact a.big{font:800 clamp(1.3rem,5vw,2rem) var(--head);overflow-wrap:anywhere}
+.links{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;margin-top:1rem;font-weight:600}
+footer{padding:2rem 0 2.5rem;color:var(--muted);font-size:.95rem;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#accueil">Votre Nom</a>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+  <div class="wrap">
+    <h1>Votre Nom</h1>
+    <p class="role">Développement d’applications, Licence 3 D2A à l’Université Alioune Diop de Bambey</p>
+    <p class="lead">Je conçois des applications qui remplacent les registres et les tableaux à la main par des outils fiables, clairs et faciles à utiliser.</p>
+    <div class="btns">
+      <a class="btn primary" href="#projets">Voir mes projets</a>
+      <a class="btn ghost" href="#contact">Me contacter</a>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="wrap">
+    <h2>À propos</h2>
+    <p>Je suis étudiant(e) en Licence 3, filière Développement d’Administration et d’Application, à l’UFR SATIC de l’Université Alioune Diop de Bambey.</p>
+    <p>J’aime comprendre un besoin concret, le modéliser proprement, puis le transformer en application qui fonctionne. Je cherche un stage ou une première expérience en développement logiciel.</p>
+  </div>
+</section>
+
+<section id="competences">
+  <div class="wrap">
+    <h2>Compétences</h2>
+    <div class="skills">
+      <div>
+        <h3>Développement</h3>
+        <ul><li>Java</li><li>JavaFX</li><li>JDBC</li><li>HTML</li><li>CSS</li></ul>
+      </div>
+      <div>
+        <h3>Données</h3>
+        <ul><li>SQL</li><li>MariaDB</li><li>MySQL</li><li>Merise</li><li>PowerAMC</li></ul>
+      </div>
+      <div>
+        <h3>Outils</h3>
+        <ul><li>Eclipse</li><li>XAMPP</li><li>phpMyAdmin</li><li>GitHub</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="wrap">
+    <h2>Projets</h2>
+
+    <article class="fiche" aria-labelledby="p1">
+      <h3 id="p1">Gestion de bibliothèque universitaire</h3>
+      <dl>
+        <div class="row"><dt>Besoin</dt><dd>Remplacer la gestion manuelle des livres, des adhérents et des emprunts, source d’erreurs et de pertes de traçabilité.</dd></div>
+        <div class="row"><dt>Solution</dt><dd>Application desktop avec trois profils (administrateur, bibliothécaire, adhérent) : catalogue, adhérents, emprunts, retours et tableau de bord statistique.</dd></div>
+        <div class="row"><dt>Technologies</dt><dd>Java, JavaFX, JDBC, MariaDB, XAMPP, Eclipse</dd></div>
+        <div class="row"><dt>Conception</dt><dd>Modélisation Merise (MCD, MLD, MPD) avec PowerAMC, architecture en trois couches.</dd></div>
+        <div class="row"><dt>Contexte</dt><dd>Projet JavaFX de Licence 3, travail en équipe de quatre personnes, année 2026-2027.</dd></div>
+        <div class="row"><dt>Mon rôle</dt><dd>À compléter : décrivez les parties que vous avez réalisées.</dd></div>
+        <div class="row"><dt>Liens</dt><dd><a href="#">Code source sur GitHub</a> &nbsp; <a href="#">Rapport du projet (PDF)</a></dd></div>
+      </dl>
+    </article>
+
+    <div class="shots" aria-label="Captures d’écran du projet">
+      <div class="shot">Ajoutez ici la capture de l’écran de connexion</div>
+      <div class="shot">Ajoutez ici la capture de la gestion des livres</div>
+      <div class="shot">Ajoutez ici la capture du tableau de bord</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>Un stage, un projet, une question : écrivez-moi.</p>
+    <a class="big" href="mailto:votre.email@exemple.com">votre.email@exemple.com</a>
+    <div class="links">
+      <a href="#">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Télécharger mon CV</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Votre Nom. Portfolio réalisé avec HTML et CSS.</div>
+</footer>
+</body>
+</html>
